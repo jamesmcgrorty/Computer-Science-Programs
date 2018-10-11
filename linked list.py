@@ -31,6 +31,24 @@ class LinkedList:
         except:
             print("You may have used different data types.  Don't be so stupid next time")
 
+    def remove(self, data):
+        try:
+            current = self.sp
+            removed = False
+            while current != -1 and not removed:
+                if current.pointer.data == data:
+                    if current.pointer == self.lp:
+                        current.pointer = -1
+                        self.lp = current
+                        removed = True
+                    else:
+                        current.pointer = current.pointer.pointer
+                        current.pointer.pointer = -1
+                        removed = True
+                current = current.pointer
+        except:
+            print("There was an error")
+
     def print(self):
         current = self.sp
         while current != -1:
