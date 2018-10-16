@@ -35,17 +35,20 @@ class LinkedList:
         try:
             current = self.sp
             removed = False
-            while current != -1 and not removed:
-                if current.pointer.data == data:
-                    if current.pointer == self.lp:
-                        current.pointer = -1
-                        self.lp = current
-                        removed = True
-                    else:
-                        current.pointer = current.pointer.pointer
-                        current.pointer.pointer = -1
-                        removed = True
-                current = current.pointer
+            if current.data == data:
+                self.sp = current.pointer
+            else:
+                while current != -1 and not removed:
+                    if current.pointer.data == data:
+                        if current.pointer == self.lp:
+                            current.pointer = -1
+                            self.lp = current
+                            removed = True
+                        else:
+                            current.pointer = current.pointer.pointer
+                            current.pointer.pointer = -1
+                            removed = True
+                    current = current.pointer
         except:
             print("There was an error")
 
